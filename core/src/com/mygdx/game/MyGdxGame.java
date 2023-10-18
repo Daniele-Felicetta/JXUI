@@ -3,9 +3,13 @@ package com.mygdx.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
@@ -29,10 +33,24 @@ public class MyGdxGame extends ApplicationAdapter {
 		stage.addActor(rootT);
 
 		ItemsRender R= new ItemsRender();
-
 		//R.debugXml(root);
-
 		R.parseRender(jxElement,rootT,skin);
+
+		Array<Cell> cells = rootT.getCells();
+		int counter=0;
+		for (Cell cell : cells) {
+			Actor actor = cell.getActor();
+			if (actor instanceof TextButton) {
+				TextButton button = (TextButton) actor;
+				System.out.println("Spazio Su: " + cell.getPadTop());
+				System.out.println("Spazio Destra: " + cell.getPadRight());
+				System.out.println("Spazio Giù: " + cell.getPadBottom());
+				System.out.println("Spazio Sinistra: " + cell.getPadLeft());
+			}
+			System.out.println(counter);
+			counter++;
+		}
+		System.out.println(cells);
 	}
 
 
