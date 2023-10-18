@@ -1,10 +1,18 @@
 <root>
     <JX>
         <main>
-            <button></button>
-            <button></button>
+            <a>
+                <button width="120">Ciao</button>
+            </a>
+            <button>COAAP</button>
             <button></button>
             <button></button>
         </main>
+        <main>
+            <button></button>
+            <button></button>
+
+        </main>
+
     </JX>
 </root>

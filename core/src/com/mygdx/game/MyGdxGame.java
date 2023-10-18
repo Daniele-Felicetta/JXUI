@@ -29,37 +29,18 @@ public class MyGdxGame extends ApplicationAdapter {
 		XmlReader reader= new XmlReader();
 		XmlReader.Element root= reader.parse(Gdx.files.internal("UI.xml"));
 
-		int childCount = root.getChildCount();
-		System.out.println(childCount);
-		for (int i = 0; i < childCount; i++) {
-			XmlReader.Element element = root.getChild(i);
-			System.out.println(element);
-		}
-
-		System.out.println("*********");
-		System.out.println(root);
-		System.out.println("*********");
-
 		Table rootT = new Table();
 		rootT.setFillParent(true);
 		stage.addActor(rootT);
-		rootT.defaults().grow();
 
 		XmlReader.Element jxElement = root.getChildByName("JX");
-		XmlReader.Element mainElement = root.getChildByName("main");
+		ItemsRender R= new ItemsRender();
 
-		for(XmlReader.Element child : jxElement.getChildrenByName("main")) {
-			if(child!=null && mainElement!=null){
-				for(XmlReader.Element grandchild : mainElement.getChildrenByName("button")) {
-					System.out.println(mainElement);
-					TextButton textButton = new TextButton("CIAO2", skin);
-					rootT.add(textButton);
-					rootT.row();
-				}
-			}
-		}
+		R.debugXml(root);
+
+		R.button(jxElement,rootT,skin);
 	}
-	
+
 
 	@Override
 	public void render () {
