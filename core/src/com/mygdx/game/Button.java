@@ -15,7 +15,6 @@ public class Button {
         }
         if ("button".equals(element.getName())) {
             TextButton textButton = new TextButton(element.getText(), skin);
-            if()
             Cell cell = rootT.add(textButton);
             calling(element,cell);
         }
