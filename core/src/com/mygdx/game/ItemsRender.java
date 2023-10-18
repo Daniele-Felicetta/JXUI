@@ -6,21 +6,32 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.XmlReader;
 
 public class ItemsRender {
-    public void button(XmlReader.Element jxElement, Table rootT, Skin skin) {
-        for (XmlReader.Element main: jxElement.getChildrenByName("main")) {
-            for (XmlReader.Element button : main.getChildrenByName("button")) {
-                TextButton textButton = new TextButton(button.getText(), skin);
-                try {
-                    int width=Integer.parseInt(button.getAttribute("width"));
-                    rootT.add(textButton).width(width);
-                }
-                catch(Exception e) {
-                    rootT.add(textButton);
-                }
+    public void button(XmlReader.Element element, Table rootT, Skin skin) {
+        if ("button".equals(element.getName())) {
+            TextButton textButton = new TextButton(element.getText(), skin);
+            if(element.hasAttribute("width")) {
+                int width = Integer.parseInt(element.getAttribute("width"));
+                rootT.add(textButton).width(width);
             }
-            for(XmlReader.Element row: main.getChildrenByName("row")){
-                rootT.row();
+
+            else {
+                rootT.add(textButton);
             }
+        }
+    }
+    public void row(XmlReader.Element element, Table rootT, Skin skin) {
+        if ("row".equals(element.getName())) {
+            rootT.row();
+        }
+    }
+    public void parseRender(XmlReader.Element element, Table rootT, Skin skin){
+
+        button(element,rootT,skin);
+        row(element,rootT,skin);
+
+        for(int i=0;i< element.getChildCount();i++){
+            XmlReader.Element childElement =element.getChild(i);
+            parseRender(childElement,rootT,skin);
         }
     }
     public void debugXml(XmlReader.Element root){

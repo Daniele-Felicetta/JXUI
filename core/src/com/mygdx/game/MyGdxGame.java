@@ -6,14 +6,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Value;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import org.xml.sax.XMLReader;
-
-import javax.lang.model.element.Element;
 
 public class MyGdxGame extends ApplicationAdapter {
 
@@ -28,17 +22,17 @@ public class MyGdxGame extends ApplicationAdapter {
 
 		XmlReader reader= new XmlReader();
 		XmlReader.Element root= reader.parse(Gdx.files.internal("UI.xml"));
+		XmlReader.Element jxElement = root.getChildByName("JX");
 
 		Table rootT = new Table();
 		rootT.setFillParent(true);
 		stage.addActor(rootT);
 
-		XmlReader.Element jxElement = root.getChildByName("JX");
 		ItemsRender R= new ItemsRender();
 
-		R.debugXml(root);
+		//R.debugXml(root);
 
-		R.button(jxElement,rootT,skin);
+		R.parseRender(jxElement,rootT,skin);
 	}
 
 

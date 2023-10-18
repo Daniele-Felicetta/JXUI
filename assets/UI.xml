@@ -1,18 +1,11 @@
 <root>
     <JX>
         <main>
-            <a>
-                <button width="120">Ciao</button>
-            </a>
+            <button width="120">Ciao</button>
             <button>COAAP</button>
-            <button></button>
-            <button></button>
+            <row/>
+            <button>Sotto </button>
+            <button>Sotto</button>
         </main>
-        <main>
-            <button></button>
-            <button></button>
-
-        </main>
-
     </JX>
 </root>
